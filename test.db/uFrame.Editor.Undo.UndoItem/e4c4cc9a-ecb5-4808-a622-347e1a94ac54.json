@@ -1,0 +1,8 @@
+{
+	"Identifier":"e4c4cc9a-ecb5-4808-a622-347e1a94ac54"	, 
+	"Time":"12/2/2016 4:31:30 PM"	, 
+	"Group":163130	, 
+	"DataRecordId":"4774a716-b08c-4cc6-bc17-f89c503a9be4"	, 
+	"Type":2	, 
+	"RecordType":"uFrame.ECS.Editor.ActionNode, Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"	, 
+	"Data":"{\r\n\t\"MetaType\":\"uFrame.ECS.Actions.IntLibrary.Subtract\"\t, \r\n\t\"VariableName\":\"ActionNode5\"\t, \r\n\t\"Order\":0\t, \r\n\t\"GraphId\":\"64710783-1311-4120-8e27-bdedd91f71a0\"\t, \r\n\t\"Identifier\":\"4774a716-b08c-4cc6-bc17-f89c503a9be4\"\t, \r\n\t\"Expanded\":false}\r\n"}
