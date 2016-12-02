@@ -29,4 +29,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
- Assets/Code/*
+
+
+Assets/Code/*
+CSharp60Support/compilation.log
