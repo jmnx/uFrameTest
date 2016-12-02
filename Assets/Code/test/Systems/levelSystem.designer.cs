@@ -24,20 +24,20 @@ namespace test {
     
     public partial class levelSystemBase : uFrame.ECS.Systems.EcsSystem {
         
-        private IEcsComponentManagerOf<playerComp> _playerCompManager;
+        private IEcsComponentManagerOf<meineTestComp> _meineTestCompManager;
         
         private IEcsComponentManagerOf<TestComponentNode> _TestComponentNodeManager;
         
-        private IEcsComponentManagerOf<meineTestComp> _meineTestCompManager;
+        private IEcsComponentManagerOf<playerComp> _playerCompManager;
         
         private IEcsComponentManagerOf<NewGroupNode> _NewGroupNodeManager;
         
-        public IEcsComponentManagerOf<playerComp> playerCompManager {
+        public IEcsComponentManagerOf<meineTestComp> meineTestCompManager {
             get {
-                return _playerCompManager;
+                return _meineTestCompManager;
             }
             set {
-                _playerCompManager = value;
+                _meineTestCompManager = value;
             }
         }
         
@@ -50,12 +50,12 @@ namespace test {
             }
         }
         
-        public IEcsComponentManagerOf<meineTestComp> meineTestCompManager {
+        public IEcsComponentManagerOf<playerComp> playerCompManager {
             get {
-                return _meineTestCompManager;
+                return _playerCompManager;
             }
             set {
-                _meineTestCompManager = value;
+                _playerCompManager = value;
             }
         }
         
@@ -70,9 +70,9 @@ namespace test {
         
         public override void Setup() {
             base.Setup();
-            playerCompManager = ComponentSystem.RegisterComponent<playerComp>(3);
-            TestComponentNodeManager = ComponentSystem.RegisterComponent<TestComponentNode>(1);
             meineTestCompManager = ComponentSystem.RegisterComponent<meineTestComp>(2);
+            TestComponentNodeManager = ComponentSystem.RegisterComponent<TestComponentNode>(1);
+            playerCompManager = ComponentSystem.RegisterComponent<playerComp>(3);
             NewGroupNodeManager = ComponentSystem.RegisterGroup<NewGroupNodeGroup,NewGroupNode>();
         }
     }

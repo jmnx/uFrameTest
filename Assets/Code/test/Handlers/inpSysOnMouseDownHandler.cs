@@ -21,7 +21,7 @@ namespace test {
     
     public class inpSysOnMouseDownHandler {
         
-        public playerComp Source;
+        public meineTestComp Source;
         
         private uFrame.ECS.UnityUtilities.MouseDownDispatcher _Event;
         

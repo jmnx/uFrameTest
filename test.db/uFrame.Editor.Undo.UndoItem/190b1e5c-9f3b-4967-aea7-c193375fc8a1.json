@@ -1,8 +1,0 @@
-{
-	"Identifier":"190b1e5c-9f3b-4967-aea7-c193375fc8a1"	, 
-	"Time":"12/2/2016 3:28:57 PM"	, 
-	"Group":152857	, 
-	"DataRecordId":"247b6845-2fde-4cee-8166-1e6ef40b3079"	, 
-	"Type":2	, 
-	"RecordType":"uFrame.ECS.Editor.ComponentNode, Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"	, 
-	"Data":"{\r\n\t\"BlackBoard\":false\t, \r\n\t\"ComponentId\":2\t, \r\n\t\"Name\":\"healthComp\"\t, \r\n\t\"Order\":0\t, \r\n\t\"GraphId\":\"64710783-1311-4120-8e27-bdedd91f71a0\"\t, \r\n\t\"Identifier\":\"247b6845-2fde-4cee-8166-1e6ef40b3079\"\t, \r\n\t\"Expanded\":false}\r\n"}
