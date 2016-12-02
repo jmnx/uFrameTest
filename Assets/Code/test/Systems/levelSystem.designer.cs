@@ -24,7 +24,22 @@ namespace test {
     
     public partial class levelSystemBase : uFrame.ECS.Systems.EcsSystem {
         
+        private IEcsComponentManagerOf<playerComp> _playerCompManager;
+        
         private IEcsComponentManagerOf<TestComponentNode> _TestComponentNodeManager;
+        
+        private IEcsComponentManagerOf<meineTestComp> _meineTestCompManager;
+        
+        private IEcsComponentManagerOf<NewGroupNode> _NewGroupNodeManager;
+        
+        public IEcsComponentManagerOf<playerComp> playerCompManager {
+            get {
+                return _playerCompManager;
+            }
+            set {
+                _playerCompManager = value;
+            }
+        }
         
         public IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager {
             get {
@@ -35,9 +50,30 @@ namespace test {
             }
         }
         
+        public IEcsComponentManagerOf<meineTestComp> meineTestCompManager {
+            get {
+                return _meineTestCompManager;
+            }
+            set {
+                _meineTestCompManager = value;
+            }
+        }
+        
+        public IEcsComponentManagerOf<NewGroupNode> NewGroupNodeManager {
+            get {
+                return _NewGroupNodeManager;
+            }
+            set {
+                _NewGroupNodeManager = value;
+            }
+        }
+        
         public override void Setup() {
             base.Setup();
+            playerCompManager = ComponentSystem.RegisterComponent<playerComp>(3);
             TestComponentNodeManager = ComponentSystem.RegisterComponent<TestComponentNode>(1);
+            meineTestCompManager = ComponentSystem.RegisterComponent<meineTestComp>(2);
+            NewGroupNodeManager = ComponentSystem.RegisterGroup<NewGroupNodeGroup,NewGroupNode>();
         }
     }
     

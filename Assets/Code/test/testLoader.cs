@@ -23,8 +23,9 @@ namespace test {
         
         public override void Load() {
             EcsSystem system = null;
-            system = this.AddSystem<TestSystem>();
             system = this.AddSystem<levelSystem>();
+            system = this.AddSystem<TestSystem>();
+            system = this.AddSystem<inpSys>();
         }
     }
 }

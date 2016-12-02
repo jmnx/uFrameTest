@@ -23,6 +23,13 @@ static
         
         #region 
 static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<meineTestComp> meineTestCompManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<meineTestComp>();
+        }
+        #endregion
+        
+        #region 
+static
         public uFrame.ECS.APIs.IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<TestComponentNode>();
         }
@@ -30,8 +37,43 @@ static
         
         #region 
 static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<playerComp> playerCompManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<playerComp>();
+        }
+        #endregion
+        
+        #region 
+static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<NewGroupNode> NewGroupNodeManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<NewGroupNode>();
+        }
+        #endregion
+        
+        #region 
+static
+        public List<meineTestComp> meineTestCompComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<meineTestComp>().Components;
+        }
+        #endregion
+        
+        #region 
+static
         public List<TestComponentNode> TestComponentNodeComponents(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<TestComponentNode>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<playerComp> playerCompComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<playerComp>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<NewGroupNode> NewGroupNodeComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<NewGroupNode>().Components;
         }
         #endregion
     }
