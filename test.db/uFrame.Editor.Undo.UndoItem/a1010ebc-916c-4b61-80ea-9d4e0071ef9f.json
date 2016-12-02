@@ -1,0 +1,8 @@
+{
+	"Identifier":"a1010ebc-916c-4b61-80ea-9d4e0071ef9f"	, 
+	"Time":"12/2/2016 5:23:24 PM"	, 
+	"Group":172324	, 
+	"DataRecordId":"b00619cd-8fac-4801-9bb4-4e3329bb41a7"	, 
+	"Type":2	, 
+	"RecordType":"uFrame.ECS.Editor.HandlerNode, Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"	, 
+	"Data":"{\r\n\t\"CodeHandler\":false\t, \r\n\t\"Custom\":false\t, \r\n\t\"MetaType\":\"ece5d4c5-a2a3-407d-b6ad-117da6bac4f8\"\t, \r\n\t\"VariableCount\":0\t, \r\n\t\"VariableName\":\"HandlerNode12\"\t, \r\n\t\"Name\":\"healthSysNewEventNode\"\t, \r\n\t\"Order\":0\t, \r\n\t\"GraphId\":\"64710783-1311-4120-8e27-bdedd91f71a0\"\t, \r\n\t\"Identifier\":\"b00619cd-8fac-4801-9bb4-4e3329bb41a7\"\t, \r\n\t\"Expanded\":false}\r\n"}
