@@ -22,7 +22,7 @@ namespace test {
     using UnityEngine;
     
     
-    public partial class TestSystemBase : uFrame.ECS.Systems.EcsSystem {
+    public partial class DemageSystemBase : uFrame.ECS.Systems.EcsSystem {
         
         private IEcsComponentManagerOf<TestComponentNode> _TestComponentNodeManager;
         
@@ -33,8 +33,6 @@ namespace test {
         private IEcsComponentManagerOf<Health> _HealthManager;
         
         private IEcsComponentManagerOf<Shield> _ShieldManager;
-        
-        private TestSystemOnMouseDownHandler TestSystemOnMouseDownHandlerInstance = new TestSystemOnMouseDownHandler();
         
         public IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager {
             get {
@@ -88,39 +86,19 @@ namespace test {
             SwordManager = ComponentSystem.RegisterComponent<Sword>(4);
             HealthManager = ComponentSystem.RegisterComponent<Health>(2);
             ShieldManager = ComponentSystem.RegisterComponent<Shield>(3);
-            this.OnEvent<uFrame.ECS.UnityUtilities.MouseDownDispatcher>().Subscribe(_=>{ TestSystemOnMouseDownFilter(_); }).DisposeWith(this);
-        }
-        
-        protected virtual void TestSystemOnMouseDownHandler(uFrame.ECS.UnityUtilities.MouseDownDispatcher data, TestComponentNode source) {
-            var handler = TestSystemOnMouseDownHandlerInstance;
-            handler.System = this;
-            handler.Event = data;
-            handler.Source = source;
-            handler.Execute();
-        }
-        
-        protected void TestSystemOnMouseDownFilter(uFrame.ECS.UnityUtilities.MouseDownDispatcher data) {
-            var SourceTestComponentNode = TestComponentNodeManager[data.EntityId];
-            if (SourceTestComponentNode == null) {
-                return;
-            }
-            if (!SourceTestComponentNode.Enabled) {
-                return;
-            }
-            this.TestSystemOnMouseDownHandler(data, SourceTestComponentNode);
         }
     }
     
-    [uFrame.Attributes.uFrameIdentifier("2667ea79-0597-4e9c-8973-88b2b0298978")]
-    public partial class TestSystem : TestSystemBase {
+    [uFrame.Attributes.uFrameIdentifier("5d2ff56f-35bb-401d-a5a9-5b38793e2e12")]
+    public partial class DemageSystem : DemageSystemBase {
         
-        private static TestSystem _Instance;
+        private static DemageSystem _Instance;
         
-        public TestSystem() {
+        public DemageSystem() {
             Instance = this;
         }
         
-        public static TestSystem Instance {
+        public static DemageSystem Instance {
             get {
                 return _Instance;
             }

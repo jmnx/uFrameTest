@@ -19,15 +19,19 @@ namespace test {
     using UnityEngine;
     
     
-    public class TestSystemOnMouseDownHandler {
+    public class DebugSystemFixedUpdateHandler {
         
-        public TestComponentNode Source;
+        public Orc Group;
         
-        private uFrame.ECS.UnityUtilities.MouseDownDispatcher _Event;
+        private uFrame.ECS.APIs.ISystemFixedUpdate _Event;
         
         private uFrame.ECS.Systems.EcsSystem _System;
         
-        public uFrame.ECS.UnityUtilities.MouseDownDispatcher Event {
+        private object ActionNode5_message = default( System.Object );
+        
+        private string StringNode6 = "Ich bin ein Orc";
+        
+        public uFrame.ECS.APIs.ISystemFixedUpdate Event {
             get {
                 return _Event;
             }
@@ -46,6 +50,10 @@ namespace test {
         }
         
         public virtual void Execute() {
+            ActionNode5_message = StringNode6;
+            // ActionNode
+            // Visit uFrame.ECS.Actions.DebugLibrary.LogMessage
+            uFrame.ECS.Actions.DebugLibrary.LogMessage(ActionNode5_message);
         }
     }
 }

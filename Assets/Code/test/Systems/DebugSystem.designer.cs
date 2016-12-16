@@ -22,7 +22,7 @@ namespace test {
     using UnityEngine;
     
     
-    public partial class TestSystemBase : uFrame.ECS.Systems.EcsSystem {
+    public partial class DebugSystemBase : uFrame.ECS.Systems.EcsSystem, uFrame.ECS.APIs.ISystemFixedUpdate {
         
         private IEcsComponentManagerOf<TestComponentNode> _TestComponentNodeManager;
         
@@ -34,7 +34,9 @@ namespace test {
         
         private IEcsComponentManagerOf<Shield> _ShieldManager;
         
-        private TestSystemOnMouseDownHandler TestSystemOnMouseDownHandlerInstance = new TestSystemOnMouseDownHandler();
+        private DebugSystemGameReadyHandler DebugSystemGameReadyHandlerInstance = new DebugSystemGameReadyHandler();
+        
+        private DebugSystemFixedUpdateHandler DebugSystemFixedUpdateHandlerInstance = new DebugSystemFixedUpdateHandler();
         
         public IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager {
             get {
@@ -88,39 +90,54 @@ namespace test {
             SwordManager = ComponentSystem.RegisterComponent<Sword>(4);
             HealthManager = ComponentSystem.RegisterComponent<Health>(2);
             ShieldManager = ComponentSystem.RegisterComponent<Shield>(3);
-            this.OnEvent<uFrame.ECS.UnityUtilities.MouseDownDispatcher>().Subscribe(_=>{ TestSystemOnMouseDownFilter(_); }).DisposeWith(this);
+            this.OnEvent<uFrame.Kernel.GameReadyEvent>().Subscribe(_=>{ DebugSystemGameReadyFilter(_); }).DisposeWith(this);
         }
         
-        protected virtual void TestSystemOnMouseDownHandler(uFrame.ECS.UnityUtilities.MouseDownDispatcher data, TestComponentNode source) {
-            var handler = TestSystemOnMouseDownHandlerInstance;
+        protected virtual void DebugSystemGameReadyHandler(uFrame.Kernel.GameReadyEvent data) {
+            var handler = DebugSystemGameReadyHandlerInstance;
             handler.System = this;
             handler.Event = data;
-            handler.Source = source;
             handler.Execute();
         }
         
-        protected void TestSystemOnMouseDownFilter(uFrame.ECS.UnityUtilities.MouseDownDispatcher data) {
-            var SourceTestComponentNode = TestComponentNodeManager[data.EntityId];
-            if (SourceTestComponentNode == null) {
-                return;
+        protected void DebugSystemGameReadyFilter(uFrame.Kernel.GameReadyEvent data) {
+            this.DebugSystemGameReadyHandler(data);
+        }
+        
+        protected virtual void DebugSystemFixedUpdateHandler(Orc group) {
+            var handler = DebugSystemFixedUpdateHandlerInstance;
+            handler.System = this;
+            handler.Group = group;
+            handler.Execute();
+        }
+        
+        protected void DebugSystemFixedUpdateFilter() {
+            var OrcItems = OrcManager.Components;
+            for (var OrcIndex = 0
+            ; OrcIndex < OrcItems.Count; OrcIndex++
+            ) {
+                if (!OrcItems[OrcIndex].Enabled) {
+                    continue;
+                }
+                this.DebugSystemFixedUpdateHandler(OrcItems[OrcIndex]);
             }
-            if (!SourceTestComponentNode.Enabled) {
-                return;
-            }
-            this.TestSystemOnMouseDownHandler(data, SourceTestComponentNode);
+        }
+        
+        public virtual void SystemFixedUpdate() {
+            DebugSystemFixedUpdateFilter();
         }
     }
     
-    [uFrame.Attributes.uFrameIdentifier("2667ea79-0597-4e9c-8973-88b2b0298978")]
-    public partial class TestSystem : TestSystemBase {
+    [uFrame.Attributes.uFrameIdentifier("81eb1603-b85d-4aaf-80c9-903965188281")]
+    public partial class DebugSystem : DebugSystemBase {
         
-        private static TestSystem _Instance;
+        private static DebugSystem _Instance;
         
-        public TestSystem() {
+        public DebugSystem() {
             Instance = this;
         }
         
-        public static TestSystem Instance {
+        public static DebugSystem Instance {
             get {
                 return _Instance;
             }

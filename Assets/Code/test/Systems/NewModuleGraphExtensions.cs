@@ -23,6 +23,20 @@ static
         
         #region 
 static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<Sword> SwordManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Sword>();
+        }
+        #endregion
+        
+        #region 
+static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<Health> HealthManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Health>();
+        }
+        #endregion
+        
+        #region 
+static
         public uFrame.ECS.APIs.IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<TestComponentNode>();
         }
@@ -30,8 +44,50 @@ static
         
         #region 
 static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<Shield> ShieldManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Shield>();
+        }
+        #endregion
+        
+        #region 
+static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<Orc> OrcManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Orc>();
+        }
+        #endregion
+        
+        #region 
+static
+        public List<Sword> SwordComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Sword>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<Health> HealthComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Health>().Components;
+        }
+        #endregion
+        
+        #region 
+static
         public List<TestComponentNode> TestComponentNodeComponents(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<TestComponentNode>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<Shield> ShieldComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Shield>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<Orc> OrcComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<Orc>().Components;
         }
         #endregion
     }

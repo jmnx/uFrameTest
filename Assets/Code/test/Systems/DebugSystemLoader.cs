@@ -14,18 +14,15 @@ namespace test {
     using System.Collections.Generic;
     using System.Linq;
     using uFrame.ECS;
-    using uFrame.ECS.Systems;
     using uFrame.ECS.UnityUtilities;
     using uFrame.Kernel;
     
     
-    public partial class testLoader : uFrame.Kernel.SystemLoader {
+    [uFrame.Attributes.uFrameIdentifier("81eb1603-b85d-4aaf-80c9-903965188281")]
+    public partial class DebugSystemLoader : uFrame.Kernel.SystemLoader {
         
         public override void Load() {
-            EcsSystem system = null;
-            system = this.AddSystem<TestSystem>();
-            system = this.AddSystem<DemageSystem>();
-            system = this.AddSystem<DebugSystem>();
+            this.AddSystem<DebugSystem>();
         }
     }
 }

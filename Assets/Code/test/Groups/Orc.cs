@@ -14,38 +14,50 @@ namespace test {
     using System.Collections.Generic;
     using System.Linq;
     using uFrame.ECS;
-    using uFrame.ECS.UnityUtilities;
     using uFrame.Kernel;
-    using UnityEngine;
+    using UniRx;
     
     
-    public class TestSystemOnMouseDownHandler {
+    [uFrame.Attributes.ComponentId(1)]
+    public partial class Orc : uFrame.ECS.Components.GroupItem {
         
-        public TestComponentNode Source;
+        private Health _Health;
         
-        private uFrame.ECS.UnityUtilities.MouseDownDispatcher _Event;
+        private Shield _Shield;
         
-        private uFrame.ECS.Systems.EcsSystem _System;
+        private Sword _Sword;
         
-        public uFrame.ECS.UnityUtilities.MouseDownDispatcher Event {
+        public Health Health {
             get {
-                return _Event;
+                return _Health;
             }
             set {
-                _Event = value;
+                _Health = value;
             }
         }
         
-        public uFrame.ECS.Systems.EcsSystem System {
+        public Shield Shield {
             get {
-                return _System;
+                return _Shield;
             }
             set {
-                _System = value;
+                _Shield = value;
             }
         }
         
-        public virtual void Execute() {
+        public Sword Sword {
+            get {
+                return _Sword;
+            }
+            set {
+                _Sword = value;
+            }
+        }
+        
+        public override int ComponentId {
+            get {
+                return 1;
+            }
         }
     }
 }
