@@ -26,13 +26,13 @@ namespace test {
         
         private IEcsComponentManagerOf<TestComponentNode> _TestComponentNodeManager;
         
+        private IEcsComponentManagerOf<Orc> _OrcManager;
+        
         private IEcsComponentManagerOf<Sword> _SwordManager;
         
         private IEcsComponentManagerOf<Health> _HealthManager;
         
         private IEcsComponentManagerOf<Shield> _ShieldManager;
-        
-        private IEcsComponentManagerOf<Orc> _OrcManager;
         
         public IEcsComponentManagerOf<TestComponentNode> TestComponentNodeManager {
             get {
@@ -40,6 +40,15 @@ namespace test {
             }
             set {
                 _TestComponentNodeManager = value;
+            }
+        }
+        
+        public IEcsComponentManagerOf<Orc> OrcManager {
+            get {
+                return _OrcManager;
+            }
+            set {
+                _OrcManager = value;
             }
         }
         
@@ -70,22 +79,13 @@ namespace test {
             }
         }
         
-        public IEcsComponentManagerOf<Orc> OrcManager {
-            get {
-                return _OrcManager;
-            }
-            set {
-                _OrcManager = value;
-            }
-        }
-        
         public override void Setup() {
             base.Setup();
             TestComponentNodeManager = ComponentSystem.RegisterComponent<TestComponentNode>(1);
+            OrcManager = ComponentSystem.RegisterGroup<OrcGroup,Orc>();
             SwordManager = ComponentSystem.RegisterComponent<Sword>(4);
             HealthManager = ComponentSystem.RegisterComponent<Health>(2);
             ShieldManager = ComponentSystem.RegisterComponent<Shield>(3);
-            OrcManager = ComponentSystem.RegisterGroup<OrcGroup,Orc>();
         }
     }
     

@@ -26,6 +26,7 @@ namespace test {
             system = this.AddSystem<TestSystem>();
             system = this.AddSystem<DemageSystem>();
             system = this.AddSystem<DebugSystem>();
+            system = this.AddSystem<InputSystem>();
         }
     }
 }
