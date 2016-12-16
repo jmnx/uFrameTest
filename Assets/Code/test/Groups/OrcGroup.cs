@@ -22,19 +22,28 @@ namespace test {
     
     public partial class OrcGroup : ReactiveGroup<Orc> {
         
+        private IEcsComponentManagerOf<Sword> _SwordManager;
+        
         private IEcsComponentManagerOf<Health> _HealthManager;
         
         private IEcsComponentManagerOf<Shield> _ShieldManager;
         
-        private IEcsComponentManagerOf<Sword> _SwordManager;
-        
         private int lastEntityId;
+        
+        private Sword Sword;
         
         private Health Health;
         
         private Shield Shield;
         
-        private Sword Sword;
+        public IEcsComponentManagerOf<Sword> SwordManager {
+            get {
+                return _SwordManager;
+            }
+            set {
+                _SwordManager = value;
+            }
+        }
         
         public IEcsComponentManagerOf<Health> HealthManager {
             get {
@@ -54,36 +63,27 @@ namespace test {
             }
         }
         
-        public IEcsComponentManagerOf<Sword> SwordManager {
-            get {
-                return _SwordManager;
-            }
-            set {
-                _SwordManager = value;
-            }
-        }
-        
         public override System.Collections.Generic.IEnumerable<UniRx.IObservable<int>> Install(uFrame.ECS.APIs.IComponentSystem componentSystem) {
+            SwordManager = componentSystem.RegisterComponent<Sword>();
+            yield return SwordManager.CreatedObservable.Select(_=>_.EntityId);;
+            yield return SwordManager.RemovedObservable.Select(_=>_.EntityId);;
             HealthManager = componentSystem.RegisterComponent<Health>();
             yield return HealthManager.CreatedObservable.Select(_=>_.EntityId);;
             yield return HealthManager.RemovedObservable.Select(_=>_.EntityId);;
             ShieldManager = componentSystem.RegisterComponent<Shield>();
             yield return ShieldManager.CreatedObservable.Select(_=>_.EntityId);;
             yield return ShieldManager.RemovedObservable.Select(_=>_.EntityId);;
-            SwordManager = componentSystem.RegisterComponent<Sword>();
-            yield return SwordManager.CreatedObservable.Select(_=>_.EntityId);;
-            yield return SwordManager.RemovedObservable.Select(_=>_.EntityId);;
         }
         
         public override bool Match(int entityId) {
             lastEntityId = entityId;
+            if ((Sword = SwordManager[entityId]) == null) {
+                return false;
+            }
             if ((Health = HealthManager[entityId]) == null) {
                 return false;
             }
             if ((Shield = ShieldManager[entityId]) == null) {
-                return false;
-            }
-            if ((Sword = SwordManager[entityId]) == null) {
                 return false;
             }
             return true;
@@ -92,9 +92,9 @@ namespace test {
         public override Orc Select() {
             var item = new Orc();;
             item.EntityId = lastEntityId;
+            item.Sword = Sword;
             item.Health = Health;
             item.Shield = Shield;
-            item.Sword = Sword;
             return item;
         }
     }
