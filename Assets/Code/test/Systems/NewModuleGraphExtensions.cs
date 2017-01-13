@@ -51,6 +51,13 @@ static
         
         #region 
 static
+        public uFrame.ECS.APIs.IEcsComponentManagerOf<edText> edTextManager(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<edText>();
+        }
+        #endregion
+        
+        #region 
+static
         public uFrame.ECS.APIs.IEcsComponentManagerOf<Orc> OrcManager(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<Orc>();
         }
@@ -81,6 +88,13 @@ static
 static
         public List<ShieldComp> ShieldCompComponents(this uFrame.ECS.APIs.IEcsSystem system) {
             return system.ComponentSystem.RegisterComponent<ShieldComp>().Components;
+        }
+        #endregion
+        
+        #region 
+static
+        public List<edText> edTextComponents(this uFrame.ECS.APIs.IEcsSystem system) {
+            return system.ComponentSystem.RegisterComponent<edText>().Components;
         }
         #endregion
         

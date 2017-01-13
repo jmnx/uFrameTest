@@ -22,7 +22,7 @@ namespace test {
     using UnityEngine;
     
     
-    public partial class TestSystemBase : uFrame.ECS.Systems.EcsSystem {
+    public partial class createObjectSystemBase : uFrame.ECS.Systems.EcsSystem {
         
         private IEcsComponentManagerOf<Orc> _OrcManager;
         
@@ -35,8 +35,6 @@ namespace test {
         private IEcsComponentManagerOf<ShieldComp> _ShieldCompManager;
         
         private IEcsComponentManagerOf<edText> _edTextManager;
-        
-        private TestSystemOnMouseDownHandler TestSystemOnMouseDownHandlerInstance = new TestSystemOnMouseDownHandler();
         
         public IEcsComponentManagerOf<Orc> OrcManager {
             get {
@@ -100,39 +98,19 @@ namespace test {
             HealthCompManager = ComponentSystem.RegisterComponent<HealthComp>(2);
             ShieldCompManager = ComponentSystem.RegisterComponent<ShieldComp>(3);
             edTextManager = ComponentSystem.RegisterComponent<edText>(6);
-            this.OnEvent<uFrame.ECS.UnityUtilities.MouseDownDispatcher>().Subscribe(_=>{ TestSystemOnMouseDownFilter(_); }).DisposeWith(this);
-        }
-        
-        protected virtual void TestSystemOnMouseDownHandler(uFrame.ECS.UnityUtilities.MouseDownDispatcher data, TestComponentNode source) {
-            var handler = TestSystemOnMouseDownHandlerInstance;
-            handler.System = this;
-            handler.Event = data;
-            handler.Source = source;
-            handler.Execute();
-        }
-        
-        protected void TestSystemOnMouseDownFilter(uFrame.ECS.UnityUtilities.MouseDownDispatcher data) {
-            var SourceTestComponentNode = TestComponentNodeManager[data.EntityId];
-            if (SourceTestComponentNode == null) {
-                return;
-            }
-            if (!SourceTestComponentNode.Enabled) {
-                return;
-            }
-            this.TestSystemOnMouseDownHandler(data, SourceTestComponentNode);
         }
     }
     
-    [uFrame.Attributes.uFrameIdentifier("2667ea79-0597-4e9c-8973-88b2b0298978")]
-    public partial class TestSystem : TestSystemBase {
+    [uFrame.Attributes.uFrameIdentifier("1a9c6044-cb7b-4ed7-b2eb-1e26fe83f1a7")]
+    public partial class createObjectSystem : createObjectSystemBase {
         
-        private static TestSystem _Instance;
+        private static createObjectSystem _Instance;
         
-        public TestSystem() {
+        public createObjectSystem() {
             Instance = this;
         }
         
-        public static TestSystem Instance {
+        public static createObjectSystem Instance {
             get {
                 return _Instance;
             }

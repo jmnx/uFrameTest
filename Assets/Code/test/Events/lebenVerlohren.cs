@@ -13,21 +13,25 @@ namespace test {
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using test;
     using uFrame.ECS;
-    using uFrame.ECS.Systems;
-    using uFrame.ECS.UnityUtilities;
-    using uFrame.Kernel;
+    using uFrame.ECS.Components;
+    using UniRx;
     
     
-    public partial class testLoader : uFrame.Kernel.SystemLoader {
+    [uFrame.Attributes.EventId(2)]
+    public partial class lebenVerlohren : object {
         
-        public override void Load() {
-            EcsSystem system = null;
-            system = this.AddSystem<createObjectSystem>();
-            system = this.AddSystem<TestSystem>();
-            system = this.AddSystem<HealthSystem>();
-            system = this.AddSystem<DebugSystem>();
-            system = this.AddSystem<InputSystem>();
+        [UnityEngine.SerializeField()]
+        private Int32 _Properties;
+        
+        public Int32 Properties {
+            get {
+                return _Properties;
+            }
+            set {
+                _Properties = value;
+            }
         }
     }
 }

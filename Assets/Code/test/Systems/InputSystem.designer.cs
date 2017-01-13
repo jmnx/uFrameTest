@@ -34,6 +34,8 @@ namespace test {
         
         private IEcsComponentManagerOf<ShieldComp> _ShieldCompManager;
         
+        private IEcsComponentManagerOf<edText> _edTextManager;
+        
         private InputSystemOnMouseDownHandler InputSystemOnMouseDownHandlerInstance = new InputSystemOnMouseDownHandler();
         
         public IEcsComponentManagerOf<Orc> OrcManager {
@@ -81,6 +83,15 @@ namespace test {
             }
         }
         
+        public IEcsComponentManagerOf<edText> edTextManager {
+            get {
+                return _edTextManager;
+            }
+            set {
+                _edTextManager = value;
+            }
+        }
+        
         public override void Setup() {
             base.Setup();
             OrcManager = ComponentSystem.RegisterGroup<OrcGroup,Orc>();
@@ -88,6 +99,7 @@ namespace test {
             SwordCompManager = ComponentSystem.RegisterComponent<SwordComp>(4);
             HealthCompManager = ComponentSystem.RegisterComponent<HealthComp>(2);
             ShieldCompManager = ComponentSystem.RegisterComponent<ShieldComp>(3);
+            edTextManager = ComponentSystem.RegisterComponent<edText>(6);
             this.OnEvent<uFrame.ECS.UnityUtilities.MouseDownDispatcher>().Subscribe(_=>{ InputSystemOnMouseDownFilter(_); }).DisposeWith(this);
         }
         

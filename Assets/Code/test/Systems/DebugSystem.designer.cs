@@ -34,6 +34,8 @@ namespace test {
         
         private IEcsComponentManagerOf<ShieldComp> _ShieldCompManager;
         
+        private IEcsComponentManagerOf<edText> _edTextManager;
+        
         private DebugSystemclickedHandler DebugSystemclickedHandlerInstance = new DebugSystemclickedHandler();
         
         private DebugSystemGameReadyHandler DebugSystemGameReadyHandlerInstance = new DebugSystemGameReadyHandler();
@@ -83,6 +85,15 @@ namespace test {
             }
         }
         
+        public IEcsComponentManagerOf<edText> edTextManager {
+            get {
+                return _edTextManager;
+            }
+            set {
+                _edTextManager = value;
+            }
+        }
+        
         public override void Setup() {
             base.Setup();
             OrcManager = ComponentSystem.RegisterGroup<OrcGroup,Orc>();
@@ -90,6 +101,7 @@ namespace test {
             SwordCompManager = ComponentSystem.RegisterComponent<SwordComp>(4);
             HealthCompManager = ComponentSystem.RegisterComponent<HealthComp>(2);
             ShieldCompManager = ComponentSystem.RegisterComponent<ShieldComp>(3);
+            edTextManager = ComponentSystem.RegisterComponent<edText>(6);
             this.OnEvent<test.clicked>().Subscribe(_=>{ DebugSystemclickedFilter(_); }).DisposeWith(this);
             this.OnEvent<uFrame.Kernel.GameReadyEvent>().Subscribe(_=>{ DebugSystemGameReadyFilter(_); }).DisposeWith(this);
         }
