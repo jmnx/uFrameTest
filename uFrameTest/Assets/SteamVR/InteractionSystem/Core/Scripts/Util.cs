@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine.AI;
 
 namespace Valve.VR.InteractionSystem
 {

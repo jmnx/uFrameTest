@@ -1,0 +1,8 @@
+{
+	"Identifier":"f75b14b9-aeff-4488-929c-2f718050e97a"	, 
+	"Time":"1/27/2017 2:01:55 PM"	, 
+	"Group":14155	, 
+	"DataRecordId":"5b216958-741e-4c9e-beb2-fc82ea035829"	, 
+	"Type":0	, 
+	"RecordType":"uFrame.ECS.Editor.EcsWorkspace, Assembly-CSharp-Editor-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"	, 
+	"Data":"{\r\n\t\"Identifier\":\"5b216958-741e-4c9e-beb2-fc82ea035829\"\t, \r\n\t\"Name\":\"vrWorkspace\"\t, \r\n\t\"Expanded\":false}\r\n"}
